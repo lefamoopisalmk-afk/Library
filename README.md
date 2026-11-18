@@ -9,7 +9,7 @@ stock movements and user accounts. Built for the WEB 2 assignment.
 | --- | --- | --- |
 | **Frontend** (React app) | [`frontend/`](https://github.com/lefamoopisalmk-afk/Library/tree/main/frontend) | https://brew-and-bind.onrender.com |
 | **Backend** (Express + PostgreSQL) | [`backend/`](https://github.com/lefamoopisalmk-afk/Library/tree/main/backend) | https://brew-and-bind.onrender.com/api/health |
-| **Database** (PostgreSQL on Render) | [`backend/src/db/schema.sql`](https://github.com/lefamoopisalmk-afk/Library/blob/main/backend/src/db/schema.sql) | https://brew-and-bind.onrender.com/api/health/db (status) · [Render database page](https://dashboard.render.com/d/dpg-dbumd61srm7s73fb42p0-a) (owner sign-in) |
+| **Database** (PostgreSQL on Render) | [`backend/src/db/schema.sql`](https://github.com/lefamoopisalmk-afk/Library/blob/main/backend/src/db/schema.sql) | https://brew-and-bind.onrender.com/api/health/db (status) · [Render database page](https://dashboard.render.com/d/dpg-dbumd61srm7s73fb42p0-a) (sign-in) |
 
 Each folder has its own README: [frontend/README.md](frontend/README.md) and
 [backend/README.md](backend/README.md). In production one Render web service runs
