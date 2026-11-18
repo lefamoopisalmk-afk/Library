@@ -38,5 +38,5 @@ the account owner.
 | `LIB-001`     | `library123` | librarian |
 | `MEM-001`     | `member123`  | member    |
 
-The admin and librarian accounts sign in as **Staff** with the staff code `SHELF-STAFF`.
+The admin and librarian accounts sign in as **Staff** with the staff code `MOOPISA_901021212`.
 
