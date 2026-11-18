@@ -3,6 +3,18 @@
 A full-stack web application for running a small library: books, stock levels,
 stock movements and user accounts. Built for the WEB 2 assignment.
 
+## Frontend and backend
+
+| Part | Code on GitHub | Live |
+| --- | --- | --- |
+| **Frontend** (React app) | [`frontend/`](https://github.com/lefamoopisalmk-afk/Library/tree/main/frontend) | https://brew-and-bind.onrender.com |
+| **Backend** (Express + PostgreSQL) | [`backend/`](https://github.com/lefamoopisalmk-afk/Library/tree/main/backend) | https://brew-and-bind.onrender.com/api/health |
+
+Each folder has its own README: [frontend/README.md](frontend/README.md) and
+[backend/README.md](backend/README.md). In production one Render web service runs
+the Express backend, which serves the built React frontend and the API from the same
+address. The database is a Render PostgreSQL instance.
+
 | Layer         | Technology                                              |
 | ------------- | ------------------------------------------------------- |
 | Front end     | React 19 (JSX, components, hooks, React Router)         |
@@ -45,17 +57,17 @@ or `LIB-001` / `library123` with the staff code `SHELF-STAFF`.
 
 | Brief | Where it is |
 | --- | --- |
-| React hooks for state and lifecycle | `useState`, `useEffect`, `useCallback`, `useMemo`, `useContext` throughout; custom hooks in `client/src/hooks/` (`useAsync`, `useDebounce`, `useMediaQuery`, `useReveal`) |
-| Reusable components | `client/src/components/`: `BookList`, `AddBookForm`, `BookForm`, `UserForm`, `BookCard`, `ActivityList`, `LoanDialog`, `SiteHeader`, `SiteFooter`, and more; pages in `client/src/pages/` (`Dashboard`, `Books`, `Transactions`, `Users`, `Profile`) |
+| React hooks for state and lifecycle | `useState`, `useEffect`, `useCallback`, `useMemo`, `useContext` throughout; custom hooks in `frontend/src/hooks/` (`useAsync`, `useDebounce`, `useMediaQuery`, `useReveal`) |
+| Reusable components | `frontend/src/components/`: `BookList`, `AddBookForm`, `BookForm`, `UserForm`, `BookCard`, `ActivityList`, `LoanDialog`, `SiteHeader`, `SiteFooter`, and more; pages in `frontend/src/pages/` (`Dashboard`, `Books`, `Transactions`, `Users`, `Profile`) |
 | Controlled forms with validation | `BookForm`, `UserForm`, `LoginForm`, `RegisterForm`, the stock form on `Transactions`, and the password form on `Profile`: every input is bound to state, checked before submit, and shows the server's message on failure |
-| React Router | `client/src/App.jsx`: `/` front page, `/login`, `/signup`, `/app` (Dashboard), `/app/books`, `/app/transactions`, `/app/users`, `/app/profile` |
-| Fetch API | `client/src/lib/api.js` wraps `fetch` for every request from React to Express |
-| RESTful Express API | `server/src/routes/`: `books.js`, `transactions.js`, `users.js`, `auth.js`, `dashboard.js`, `public.js` |
-| CRUD routes `/books`, `/transactions`, `/users` | Mounted at `/api/books`, `/api/transactions`, `/api/users` (used by the app) and also at `/books`, `/transactions`, `/users` as the brief names them (`server/src/index.js`) |
-| PostgreSQL storing books, users, transactions | `server/src/db/schema.sql`: `books`, `users`, `transactions`, `covers` tables via the `pg` driver |
+| React Router | `frontend/src/App.jsx`: `/` front page, `/login`, `/signup`, `/app` (Dashboard), `/app/books`, `/app/transactions`, `/app/users`, `/app/profile` |
+| Fetch API | `frontend/src/lib/api.js` wraps `fetch` for every request from React to Express |
+| RESTful Express API | `backend/src/routes/`: `books.js`, `transactions.js`, `users.js`, `auth.js`, `dashboard.js`, `public.js` |
+| CRUD routes `/books`, `/transactions`, `/users` | Mounted at `/api/books`, `/api/transactions`, `/api/users` (used by the app) and also at `/books`, `/transactions`, `/users` as the brief names them (`backend/src/index.js`) |
+| PostgreSQL storing books, users, transactions | `backend/src/db/schema.sql`: `books`, `users`, `transactions`, `covers` tables via the `pg` driver |
 | Stock levels and borrowing history | `books.quantity`; every movement in `transactions`, with loans, borrowers and return dates |
-| Middleware `express.json()` and `cors` | `server/src/index.js`: `app.use(cors())` and `app.use(express.json(...))`, plus auth and role middleware in `server/src/middleware/auth.js` |
-| Styling | Plain CSS in `client/src/styles/` (design tokens, base, landing, app, header and footer) |
+| Middleware `express.json()` and `cors` | `backend/src/index.js`: `app.use(cors())` and `app.use(express.json(...))`, plus auth and role middleware in `backend/src/middleware/auth.js` |
+| Styling | Plain CSS in `frontend/src/styles/` (design tokens, base, landing, app, header and footer) |
 
 ## What it does
 
@@ -83,7 +95,7 @@ or `LIB-001` / `library123` with the staff code `SHELF-STAFF`.
   ...), which the member sees any time in the profile panel.
 - **Members** sign in with their membership ID and password.
 - **Staff** (librarians and admins) choose **Staff** on the sign-in form and also
-  enter the staff code, set as `STAFF_SIGNIN_CODE` in `server/.env` (default
+  enter the staff code, set as `STAFF_SIGNIN_CODE` in `backend/.env` (default
   `SHELF-STAFF`).
 - Librarian and admin accounts are created by an admin on the Users page.
 
@@ -101,7 +113,7 @@ That single command starts three things:
 
 | Name  | What                                              | Where                   |
 | ----- | ------------------------------------------------- | ----------------------- |
-| `db`  | PostgreSQL (data lives in `server/.pgdata`)       | `localhost:5433`        |
+| `db`  | PostgreSQL (data lives in `backend/.pgdata`)       | `localhost:5433`        |
 | `api` | The Express API (creates tables and demo accounts)| `http://localhost:4000` |
 | `web` | The React app (Vite dev server, proxies `/api`)   | `http://localhost:5173` |
 
@@ -122,7 +134,7 @@ Press `Ctrl+C` once to stop everything.
 ### Using your own PostgreSQL instead
 
 1. Create an empty database, for example `library`.
-2. Copy `server/.env.example` to `server/.env` and set `DATABASE_URL`, for example
+2. Copy `backend/.env.example` to `backend/.env` and set `DATABASE_URL`, for example
    `postgres://postgres:yourpassword@localhost:5432/library`.
 3. Run `npm run dev:app` (API and web only). Tables and the demo accounts are created on
    first start. `npm run db:init` does the same without starting the servers.
@@ -140,31 +152,34 @@ npm run build
 npm start
 ```
 
-`npm run build` compiles the React app into `client/dist`, and `npm start` runs the
+`npm run build` compiles the React app into `frontend/dist`, and `npm start` runs the
 Express server, which then serves the built app and the API from one port (4000).
 
 ## Project structure
 
 ```
-library-management-system/
-├── package.json            root scripts (npm workspaces)
-├── server/                 Express API
-│   ├── scripts/local-db.js starts PostgreSQL locally (embedded-postgres)
+Library/
+├── package.json            root scripts (npm workspaces: frontend, backend)
+├── render.yaml             hosting blueprint for Render
+├── cover-library/          cover images for the starting books
+├── frontend/               React app (Vite), see frontend/README.md
+│   ├── public/             favicon and site photos
 │   └── src/
-│       ├── index.js        app setup, routes, static serving
-│       ├── db/             pool.js, schema.sql, seed.js, init.js
-│       ├── lib/            errors.js, validate.js, serialize.js
-│       ├── middleware/     auth.js (JWT check, role check)
-│       └── routes/         auth.js, books.js, transactions.js, users.js, dashboard.js
-└── client/                 React app (Vite)
+│       ├── main.jsx, App.jsx (routes)
+│       ├── components/     BookList, AddBookForm, BookForm, UserForm, ...
+│       ├── context/        AuthContext.jsx (sign-in state, authenticated fetch)
+│       ├── hooks/          useAsync, useDebounce, useMediaQuery, useReveal
+│       ├── lib/            api.js (Fetch wrapper), brand.js, format.js
+│       ├── pages/          Landing, Login, Dashboard, Books, Transactions, Users, Profile
+│       └── styles/         tokens, base, landing, app, chrome CSS
+└── backend/                Express API + PostgreSQL, see backend/README.md
+    ├── scripts/            local-db.js, seed-books.js, api-test.mjs
     └── src/
-        ├── main.jsx, App.jsx (routes)
-        ├── context/        AuthContext.jsx (login state, authenticated fetch)
-        ├── hooks/          useAsync, useDebounce, useMediaQuery, useReveal
-        ├── lib/            api.js (Fetch wrapper), format.js
-        ├── components/     shared UI: forms, modal, toasts, badges, app shell, hero
-        ├── pages/          Landing, Login, Dashboard, Books, Transactions, Users
-        └── styles/         tokens.css, base.css, landing.css, app.css
+        ├── index.js        app setup, middleware, routes, static frontend
+        ├── db/             pool.js, schema.sql, seed.js, init.js
+        ├── lib/            errors, validate, serialize, covers, secret
+        ├── middleware/     auth.js (JWT check, role check)
+        └── routes/         auth, books, transactions, users, dashboard, public
 ```
 
 ## API
@@ -203,7 +218,7 @@ Transaction `type` is one of `stock_in` (add stock), `borrow` (deduct stock) or
 
 ## Database
 
-Three tables, created from `server/src/db/schema.sql`:
+Three tables, created from `backend/src/db/schema.sql`:
 
 - `users` (id, name, membership_id, role, password_hash, created_at)
 - `books` (id, title, author, genre, isbn, quantity, cover, created_at, updated_at)
@@ -222,13 +237,13 @@ is deleted.
 - **Port 5433 already in use**: an earlier database process is still running.
   Stop it, or set `LOCAL_PG_PORT` and `DATABASE_URL` to another port.
 - **Port 5173 or 4000 busy**: stop whatever is using it, or change `PORT` in
-  `server/.env` and the proxy target in `client/vite.config.js`.
+  `backend/.env` and the proxy target in `frontend/vite.config.js`.
 
 ## Passwords
 
 Passwords are checked against a bcrypt hash. So that people can see their own
 password on the profile page, an encrypted copy (AES-256-GCM) is also stored, sealed
-with `PASSWORD_VIEW_KEY` from `server/.env` (or `JWT_SECRET` if that is not set).
+with `PASSWORD_VIEW_KEY` from `backend/.env` (or `JWT_SECRET` if that is not set).
 Only the signed-in owner can open it. Accounts created before this feature get their
 copy the next time they sign in. Showing passwords is weaker than the usual
 hash-only approach, and was added because the brief for this site asked for it.
@@ -245,8 +260,8 @@ hash-only approach, and was added because the brief for this site asked for it.
 
 ## Photos and name
 
-- The library name lives in `client/src/lib/brand.js` (currently Brew & Bind). Change it there and the logo, titles and footer follow.
-- Photos used in the design live in `client/public/images/` (front-page banner, promo band, sign-in page and dashboard).
+- The library name lives in `frontend/src/lib/brand.js` (currently Brew & Bind). Change it there and the logo, titles and footer follow.
+- Photos used in the design live in `frontend/public/images/` (front-page banner, promo band, sign-in page and dashboard).
 
 ## Deploy (make it live)
 

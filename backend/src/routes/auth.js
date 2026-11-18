@@ -12,7 +12,7 @@ const router = Router();
 const STAFF_ROLES = ['librarian', 'admin'];
 
 // The staff code staff enter when they sign in. STAFF_SIGNIN_CODE in
-// server/.env; the older name LIBRARIAN_SIGNUP_CODE still works.
+// backend/.env; the older name LIBRARIAN_SIGNUP_CODE still works.
 function staffCode() {
   return (process.env.STAFF_SIGNIN_CODE || process.env.LIBRARIAN_SIGNUP_CODE || '').trim();
 }

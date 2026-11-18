@@ -1,21 +1,21 @@
 {
-  "name": "shelfwise",
+  "name": "brew-and-bind",
   "version": "1.0.0",
   "private": true,
   "description": "Brew & Bind: a library management system built with React, Express and PostgreSQL",
   "workspaces": [
-    "server",
-    "client"
+    "frontend",
+    "backend"
   ],
   "scripts": {
-    "dev": "concurrently -k -n db,api,web -c cyan,green,magenta \"npm run db:local -w server\" \"npm run dev -w server\" \"npm run dev -w client\"",
-    "dev:app": "concurrently -k -n api,web -c green,magenta \"npm run dev -w server\" \"npm run dev -w client\"",
-    "db:local": "npm run db:local -w server",
-    "db:init": "npm run db:init -w server",
-    "build": "npm run build -w client",
-    "start": "npm run start -w server",
-    "test:api": "npm run test:api -w server",
-    "db:seed-books": "npm run db:seed-books -w server"
+    "dev": "concurrently -k -n db,api,web -c cyan,green,magenta \"npm run db:local -w backend\" \"npm run dev -w backend\" \"npm run dev -w frontend\"",
+    "dev:app": "concurrently -k -n api,web -c green,magenta \"npm run dev -w backend\" \"npm run dev -w frontend\"",
+    "db:local": "npm run db:local -w backend",
+    "db:init": "npm run db:init -w backend",
+    "build": "npm run build -w frontend",
+    "start": "npm run start -w backend",
+    "test:api": "npm run test:api -w backend",
+    "db:seed-books": "npm run db:seed-books -w backend"
   },
   "devDependencies": {
     "concurrently": "^9.1.2"

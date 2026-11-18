@@ -1,11 +1,11 @@
 // Starts a real PostgreSQL server for local development without installing
 // anything on the machine. The binaries come from the embedded-postgres
-// npm package and the data lives in server/.pgdata (ignored by git).
+// npm package and the data lives in backend/.pgdata (ignored by git).
 //
 //   npm run db:local        (or "npm run dev" at the project root, which runs this too)
 //
 // If you already have PostgreSQL installed, you do not need this script:
-// point DATABASE_URL in server/.env at your own server instead.
+// point DATABASE_URL in backend/.env at your own server instead.
 
 import EmbeddedPostgres from 'embedded-postgres';
 import { existsSync, readFileSync, rmSync } from 'node:fs';

@@ -3,7 +3,7 @@ import { createCipheriv, createDecipheriv, createHash, randomBytes } from 'node:
 // Passwords are checked against a bcrypt hash, which cannot be turned back
 // into the password. So that people can view their own password on their
 // profile page (the eye icon), an encrypted copy is kept as well, sealed with
-// AES-256-GCM using a key from server/.env (PASSWORD_VIEW_KEY, falling back
+// AES-256-GCM using a key from backend/.env (PASSWORD_VIEW_KEY, falling back
 // to JWT_SECRET). Only the account owner can ask for it to be opened.
 const keySource = process.env.PASSWORD_VIEW_KEY || process.env.JWT_SECRET || 'shelfwise-dev-secret';
 const KEY = createHash('sha256').update(String(keySource)).digest();

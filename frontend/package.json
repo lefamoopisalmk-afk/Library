@@ -1,9 +1,9 @@
 {
-  "name": "shelfwise-client",
+  "name": "brew-and-bind-frontend",
   "version": "1.0.0",
   "private": true,
   "type": "module",
-  "description": "React front end for Brew & Bind",
+  "description": "Brew & Bind frontend: React app",
   "scripts": {
     "dev": "vite",
     "build": "vite build",

@@ -7,7 +7,7 @@ export const BRAND = {
   tagline: 'Library & reading room',
 };
 
-// Photos used around the site (in client/public/images).
+// Photos used around the site (in frontend/public/images).
 export const PHOTOS = {
   cozyReading: '/images/cozy-reading.png',
   coffeeBooks: '/images/coffee-books.png',

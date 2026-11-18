@@ -1,7 +1,7 @@
 node_modules/
-server/.pgdata/
-server/.env
-client/dist/
+backend/.pgdata/
+backend/.env
+frontend/dist/
 *.log
 .DS_Store
-server/uploads/
+backend/uploads/

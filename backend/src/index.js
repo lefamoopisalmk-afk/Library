@@ -17,7 +17,7 @@ import publicRoutes from './routes/public.js';
 
 const PORT = Number(process.env.PORT || 4000);
 const here = path.dirname(fileURLToPath(import.meta.url));
-const clientDist = path.resolve(here, '../../client/dist');
+const clientDist = path.resolve(here, '../../frontend/dist');
 
 const app = express();
 app.use(cors());
