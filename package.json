@@ -1,0 +1,26 @@
+{
+  "name": "shelfwise",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Brew & Bind: a library management system built with React, Express and PostgreSQL",
+  "workspaces": [
+    "server",
+    "client"
+  ],
+  "scripts": {
+    "dev": "concurrently -k -n db,api,web -c cyan,green,magenta \"npm run db:local -w server\" \"npm run dev -w server\" \"npm run dev -w client\"",
+    "dev:app": "concurrently -k -n api,web -c green,magenta \"npm run dev -w server\" \"npm run dev -w client\"",
+    "db:local": "npm run db:local -w server",
+    "db:init": "npm run db:init -w server",
+    "build": "npm run build -w client",
+    "start": "npm run start -w server",
+    "test:api": "npm run test:api -w server",
+    "db:seed-books": "npm run db:seed-books -w server"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

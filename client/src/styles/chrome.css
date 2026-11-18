@@ -1,0 +1,383 @@
+/* Site header and footer, shared by every page. */
+
+/* Header: a solid full-width bar at the top of the page. It is part of the
+   page (not floating over it) and scrolls away with the content. */
+.site-header {
+  position: relative;
+  z-index: 40;
+  background: var(--panel);
+  border-bottom: 1px solid var(--line);
+  box-shadow: 0 4px 18px rgba(74, 46, 34, 0.05);
+}
+
+.site-header-inner {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 0;
+}
+
+.site-header .logo {
+  color: var(--brand-800);
+}
+
+.site-header-menu {
+  display: none;
+}
+
+.burger,
+.burger::before,
+.burger::after {
+  display: block;
+  width: 20px;
+  height: 2px;
+  border-radius: 2px;
+  background: currentColor;
+}
+
+.burger {
+  position: relative;
+}
+
+.burger::before,
+.burger::after {
+  content: '';
+  position: absolute;
+  left: 0;
+}
+
+.burger::before {
+  top: -6px;
+}
+
+.burger::after {
+  top: 6px;
+}
+
+.site-header-links {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.site-header-links a {
+  padding: 8px 14px;
+  border-radius: 999px;
+  color: var(--text-2);
+  font-size: 0.86rem;
+  font-weight: 500;
+  transition:
+    background var(--speed) var(--ease),
+    color var(--speed) var(--ease);
+}
+
+.site-header-links a:hover {
+  background: var(--brand-50);
+  color: var(--brand-800);
+}
+
+.site-header-links a.is-active {
+  background: var(--brand-800);
+  color: #fff;
+}
+
+.site-header-actions {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 10px;
+}
+
+.site-header-actions .icon-btn svg {
+  width: 21px;
+  height: 21px;
+}
+
+/* Profile icon and its panel */
+.profile {
+  position: relative;
+}
+
+.profile-btn {
+  border-color: var(--line-strong);
+  background: var(--panel);
+}
+
+.profile-btn.is-open {
+  background: var(--brand-800);
+  border-color: var(--brand-800);
+  color: #fff;
+}
+
+.profile-panel {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  z-index: 60;
+  width: min(300px, calc(100vw - 32px));
+  padding: 18px;
+  border-radius: var(--radius-md);
+  background: var(--panel);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+  animation: modal-in 200ms var(--ease);
+}
+
+.profile-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-bottom: 14px;
+  margin-bottom: 12px;
+  border-bottom: 1px solid var(--line);
+}
+
+.profile-head div {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  min-width: 0;
+}
+
+.profile-head strong {
+  font-size: 0.95rem;
+  overflow-wrap: anywhere;
+}
+
+.profile-head .avatar {
+  width: 46px;
+  height: 46px;
+  font-size: 0.9rem;
+}
+
+.profile-details {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 0;
+}
+
+.profile-details div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.84rem;
+}
+
+.profile-details dt {
+  color: var(--text-2);
+}
+
+.profile-details dd {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  font-weight: 500;
+}
+
+.profile-id {
+  font-family: var(--font-mono);
+  padding: 2px 8px;
+  border-radius: 6px;
+  background: var(--brand-800);
+  color: #fff;
+  font-size: 0.82rem;
+}
+
+.profile-note {
+  margin: 12px 0 14px;
+  font-size: 0.76rem;
+  color: var(--text-3);
+}
+
+.profile-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.profile-actions .btn {
+  flex: 1;
+}
+
+/* Footer: a solid full-width bar at the bottom of the page, matching the header */
+.site-footer {
+  margin-top: 40px;
+  background: var(--panel);
+  border-top: 1px solid var(--line);
+  box-shadow: 0 -4px 18px rgba(74, 46, 34, 0.04);
+}
+
+.footer-card {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  padding: 32px 0 22px;
+}
+
+.footer-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.footer-brand {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  max-width: 40ch;
+}
+
+.footer-brand .logo {
+  align-items: flex-start;
+}
+
+.footer-brand p {
+  font-size: 0.86rem;
+  color: var(--text-2);
+}
+
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 18px;
+}
+
+.footer-links a {
+  font-size: 0.86rem;
+  font-weight: 500;
+  color: var(--text);
+}
+
+.footer-links a:hover {
+  color: var(--gold);
+}
+
+.perks {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  list-style: none;
+  padding: 16px 0;
+  margin: 0;
+  border-top: 1px solid rgba(91, 63, 50, 0.12);
+  border-bottom: 1px solid rgba(91, 63, 50, 0.12);
+}
+
+.perks li {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 4px 10px;
+  font-size: 0.82rem;
+  color: var(--text-2);
+}
+
+.perks li + li {
+  border-left: 1px solid rgba(91, 63, 50, 0.12);
+}
+
+.perks svg {
+  color: var(--brand-700);
+}
+
+.footer-note {
+  text-align: center;
+  font-size: 0.76rem;
+  color: var(--text-3);
+}
+
+/* Glass needs something soft behind it: warm blurred light behind the page */
+body {
+  background:
+    radial-gradient(40% 40% at 8% 0%, rgba(227, 187, 163, 0.55), transparent 70%),
+    radial-gradient(35% 35% at 95% 15%, rgba(176, 130, 107, 0.25), transparent 70%),
+    radial-gradient(45% 40% at 50% 100%, rgba(227, 187, 163, 0.45), transparent 70%),
+    var(--canvas);
+  background-attachment: fixed;
+}
+
+@media (max-width: 960px) {
+  .perks {
+    grid-template-columns: 1fr 1fr;
+    gap: 6px 0;
+  }
+
+  .perks li + li {
+    border-left: 0;
+  }
+}
+
+@media (max-width: 860px) {
+  .site-header-inner {
+    padding: 10px 0;
+  }
+
+  .site-header-menu {
+    display: inline-grid;
+  }
+
+  .site-header-links {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 2px;
+    padding: 8px;
+    border-radius: var(--radius-md);
+    background: rgba(255, 255, 255, 0.97);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    box-shadow: var(--shadow);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-6px);
+    transition:
+      opacity var(--speed) var(--ease),
+      transform var(--speed) var(--ease),
+      visibility var(--speed);
+  }
+
+  .site-header-links.is-open {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+  }
+
+  .site-header-links a {
+    padding: 12px 14px;
+    border-radius: 12px;
+  }
+
+  .header-cta,
+  .header-user-text {
+    display: none;
+  }
+
+  .header-user {
+    padding: 2px;
+  }
+
+  .site-header .logo-tag {
+    display: none;
+  }
+
+  .site-footer {
+    padding-bottom: 96px;
+  }
+
+  .footer-card {
+    padding: 24px 0 18px;
+  }
+}

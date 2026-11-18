@@ -1,0 +1,59 @@
+/* Brew & Bind design tokens, after the Deli//Break reference:
+   a soft blush-cream page, latte and espresso browns for the brand, white
+   rounded cards, warm photos, and one clean sans-serif family throughout. */
+:root {
+  --canvas: #f6ece6;
+  --canvas-2: #ffffff;
+  --panel: #ffffff;
+  --panel-2: #fbf5f1;
+  --line: #eadbd2;
+  --line-strong: #dcc7ba;
+
+  /* Brand browns, darkest to lightest */
+  --brand-950: #2a1c16;
+  --brand-900: #3b2820;
+  --brand-800: #5b3f32;
+  --brand-700: #7a5644;
+  --brand-500: #b0826b;
+  --brand-100: #f0e1d8;
+  --brand-50: #f8f0eb;
+
+  /* Caramel accent */
+  --gold: #b98266;
+  --gold-2: #e3bba3;
+  --gold-soft: #f5e4da;
+
+  --accent: var(--brand-800);
+  --accent-hover: var(--brand-700);
+  --accent-muted: var(--brand-100);
+  --accent-ink: #ffffff;
+
+  --ember: #b5483a;
+  --ember-muted: #f8e3df;
+  --warn: #a8701f;
+  --warn-muted: #fbefd9;
+  --ok: #4c7a52;
+  --ok-muted: #e6f0e4;
+  --info: #4d6f8a;
+  --info-muted: #e5edf3;
+
+  --text: #2a1f1a;
+  --text-2: #6d5f57;
+  --text-3: #9c8d84;
+
+  --font-display: 'Poppins', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-body: 'Poppins', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-script: 'Poppins', system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, Consolas, monospace;
+
+  --radius: 26px;
+  --radius-md: 20px;
+  --radius-sm: 12px;
+  --shadow: 0 24px 50px rgba(74, 46, 34, 0.14);
+  --shadow-sm: 0 6px 18px rgba(74, 46, 34, 0.08);
+  --shadow-card: 0 1px 2px rgba(74, 46, 34, 0.05), 0 12px 28px rgba(74, 46, 34, 0.07);
+  --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --speed: 220ms;
+
+  color-scheme: light;
+}
