@@ -50,6 +50,12 @@ async function cleanup() {
 try {
   const health = await call('GET', '/health');
   check('health', health.status === 200 && health.data.ok);
+  const dbStatus = await call('GET', '/health/db');
+  check(
+    'public database status',
+    dbStatus.status === 200 && dbStatus.data.database === 'connected' && dbStatus.data.records.books >= 0 && !JSON.stringify(dbStatus.data).includes('password'),
+    dbStatus.data.engine,
+  );
 
   const bad = await call('POST', '/auth/login', { body: { membershipId: 'ADM-001', password: 'wrong' } });
   check('login rejects wrong password', bad.status === 401, bad.data.error);

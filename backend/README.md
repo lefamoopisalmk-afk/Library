@@ -5,6 +5,9 @@ production it also serves the built React app from [`../frontend`](../frontend).
 
 - **Live API health check:** https://brew-and-bind.onrender.com/api/health
 - **Live public shelf (no sign-in):** https://brew-and-bind.onrender.com/api/public/shelf
+- **Live database status:** https://brew-and-bind.onrender.com/api/health/db (connected, record counts)
+- **Database schema:** [`src/db/schema.sql`](src/db/schema.sql)
+- **Database on Render (owner sign-in):** https://dashboard.render.com/d/dpg-dbumd61srm7s73fb42p0-a
 - **Frontend that uses it:** [`../frontend`](../frontend), live at https://brew-and-bind.onrender.com
 - **Main project README:** [`../README.md`](../README.md)
 
@@ -28,7 +31,7 @@ The React app calls the routes under `/api`. The same routers also answer at
 | Transactions | `GET /api/transactions`, `POST /api/transactions`, `POST /api/transactions/:id/return`, `GET /api/transactions/my-loans` |
 | Users | `GET /api/users`, `POST /api/users`, `PUT /api/users/:id`, `DELETE /api/users/:id` |
 | Sign-in and profile | `POST /api/auth/login`, `POST /api/auth/register`, `GET /api/auth/me`, `GET`/`PUT /api/auth/me/password` |
-| Other | `GET /api/dashboard`, `GET /api/public/shelf`, `GET /api/health`, `GET /uploads/covers/:name` |
+| Other | `GET /api/dashboard`, `GET /api/public/shelf`, `GET /api/health`, `GET /api/health/db`, `GET /uploads/covers/:name` |
 
 ## Database
 

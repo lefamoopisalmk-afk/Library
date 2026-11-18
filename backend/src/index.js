@@ -4,7 +4,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import express from 'express';
 import cors from 'cors';
-import { waitForDatabase } from './db/pool.js';
+import { query, waitForDatabase } from './db/pool.js';
 import { ensureSchema } from './db/init.js';
 import { errorHandler, notFound } from './lib/errors.js';
 import { coverRouter } from './lib/covers.js';
@@ -27,6 +27,26 @@ app.use('/uploads', coverRouter);
 app.use('/uploads', (req, res) => res.status(404).end());
 
 app.get('/api/health', (req, res) => res.json({ ok: true, time: new Date().toISOString() }));
+
+// Public database status: shows the PostgreSQL database is connected and how
+// many records it holds. No names, passwords or connection details.
+app.get('/api/health/db', async (req, res) => {
+  const started = Date.now();
+  const { rows } = await query(`SELECT version() AS version,
+      (SELECT count(*)::int FROM books) AS books,
+      (SELECT coalesce(sum(quantity), 0)::int FROM books) AS copies,
+      (SELECT count(*)::int FROM users) AS users,
+      (SELECT count(*)::int FROM transactions) AS transactions`);
+  const r = rows[0];
+  res.set('Cache-Control', 'no-store');
+  res.json({
+    database: 'connected',
+    engine: (r.version.match(/PostgreSQL [\d.]+/) || ['PostgreSQL'])[0],
+    tables: ['books', 'users', 'transactions', 'covers'],
+    records: { books: r.books, copiesInStock: r.copies, users: r.users, transactions: r.transactions },
+    responseMs: Date.now() - started,
+  });
+});
 app.use('/api/auth', authRoutes);
 app.use('/api/books', bookRoutes);
 app.use('/api/transactions', transactionRoutes);
